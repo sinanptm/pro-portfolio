@@ -1,4 +1,5 @@
 'use client';
+
 import Link from "next/link";
 import Image from "next/image";
 import { memo, useMemo } from "react";
@@ -12,10 +13,9 @@ const Footer = () => {
     if (pathname === 'resume') {
         return null;
     }
-    
     return (
-        <footer className="w-full bg-background border-t border-border">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <footer className="backdrop-contrast-200 bg-purple-950/10 border-t border-border">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-7">
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
                     <div className="flex flex-col items-start space-y-4">
                         <Logo />
@@ -35,11 +35,17 @@ const Footer = () => {
                                         {link.label}
                                     </Link>
                                 ))}
+                                <Link
+                                    href='/resume'
+                                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                                >
+                                    Resume
+                                </Link>
                             </nav>
                         </div>
 
                         <div>
-                            <h3 className="text-sm font-semibold mb-4 text-foreground">Connect</h3>
+                            <h3 className="text-sm font-semibold mb-4 text-foreground">Connect me on</h3>
                             <div className="flex space-x-4">
                                 {socialMediaLinks.map((link) => (
                                     <Link
@@ -48,7 +54,7 @@ const Footer = () => {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="hover:opacity-80 transition-opacity"
-                                        title={link.title}
+                                        title={`connect me on ${link.title}`}
                                     >
                                         <Image
                                             src={link.icon || "/placeholder.svg"}
@@ -64,11 +70,10 @@ const Footer = () => {
                     </div>
                 </div>
 
-                <div className="mt-12 pt-8 border-t border-border flex flex-col sm:flex-row justify-between items-center">
+                <div className="flex flex-col mt-9 sm:flex-row justify-between items-center">
                     <p className="text-sm text-muted-foreground">
                         © {currentYear} {profile.name}. All rights reserved.
                     </p>
-                    <p className="text-sm text-muted-foreground mt-2 sm:mt-0">{profile.title}</p>
                 </div>
             </div>
         </footer>
